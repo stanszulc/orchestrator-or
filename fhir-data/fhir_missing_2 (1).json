@@ -1,0 +1,34 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:bbbbbbbb-0004-0004-0004-000000000004",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [{ "coding": [{ "system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs" }] }],
+        "code": { "coding": [{ "system": "http://loinc.org", "code": "39156-5", "display": "Body mass index (BMI) [Ratio]" }] },
+        "subject": { "reference": "Patient/634fcbc6-b9c2-481f-8f7c-1f36199355b7" },
+        "effectiveDateTime": "2026-03-29",
+        "valueQuantity": { "value": 27.8, "unit": "kg/m2", "system": "http://unitsofmeasure.org", "code": "kg/m2" },
+        "note": [{ "text": "procedure=Hernia Repair|cpt=49505|snomed=52852006|duration_p50=90|risk=Standard" }]
+      },
+      "request": { "method": "POST", "url": "Observation" }
+    },
+    {
+      "fullUrl": "urn:uuid:bbbbbbbb-0010-0010-0010-000000000010",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [{ "coding": [{ "system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs" }] }],
+        "code": { "coding": [{ "system": "http://loinc.org", "code": "39156-5", "display": "Body mass index (BMI) [Ratio]" }] },
+        "subject": { "reference": "Patient/8b9c391f-5119-4b8f-a1dd-f195a390380e" },
+        "effectiveDateTime": "2026-03-29",
+        "valueQuantity": { "value": 19.8, "unit": "kg/m2", "system": "http://unitsofmeasure.org", "code": "kg/m2" },
+        "note": [{ "text": "procedure=Appendectomy|cpt=44950|snomed=80146002|duration_p50=45|risk=Low" }]
+      },
+      "request": { "method": "POST", "url": "Observation" }
+    }
+  ]
+}
