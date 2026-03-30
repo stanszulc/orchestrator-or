@@ -15,7 +15,7 @@ mcp = FastMCP("OR Flow Optimizer")
 # ── Ścieżka do pliku FHIR ────────────────────────────────────────────────────
 FHIR_FILE = os.path.join(
     os.path.dirname(__file__),
-    "../../fhir-data/fhir_patients_10.json"
+    "fhir_patients_10.json"
 )
 
 # ── MCP Tools ────────────────────────────────────────────────────────────────
@@ -37,7 +37,6 @@ def get_patients_from_fhir() -> dict:
             if resource.get("resourceType") != "Observation":
                 continue
 
-            # Parsuj note field: "patient_id=P001|name=...|procedure=...|duration_p50=58|risk=Standard"
             notes = resource.get("note", [])
             if not notes:
                 continue
@@ -52,7 +51,6 @@ def get_patients_from_fhir() -> dict:
             if "procedure" not in fields or "duration_p50" not in fields:
                 continue
 
-            # patient_id z note lub z subject reference
             patient_id = fields.get("patient_id") or \
                 resource.get("subject", {}).get("reference", "").split("/")[-1]
 
@@ -160,8 +158,8 @@ def optimize_schedule(
             **r,
             "name":  p.get("name", p.get("patient_id", "?")),
             "order": len(schedule) + 1,
-            "start": f"{sh:02d}:{sm:02d}",
-            "end":   f"{eh:02d}:{em:02d}",
+            "start": f"{int(sh):02d}:{int(sm):02d}",
+            "end":   f"{int(eh):02d}:{int(em):02d}",
         })
 
         total_minutes += r["scheduled_minutes"]
